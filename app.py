@@ -125,11 +125,17 @@ def load_data():
     try:
         pipeline = CurrencyDataPipeline()
         df = pipeline.fetch_data()
+
+        if df is None or len(df) == 0:
+            return None, None, "No data returned from API"
+
         analyzer = CurrencyAnalyzer(df)
         metrics = analyzer.calculate_all_metrics()
         return df, metrics
     except Exception as e:
-        return None, None, str(e)
+        import traceback
+        error_details = f"{str(e)}\n{traceback.format_exc()}"
+        return None, None, error_details
 
 # Load data with progress indicator
 with st.spinner("Loading currency data from US Treasury API..."):
@@ -138,7 +144,9 @@ with st.spinner("Loading currency data from US Treasury API..."):
     if len(result) == 3:
         df, metrics, error = result
         if df is None:
-            st.error(f"Failed to load data: {error}")
+            st.error("Failed to load data from US Treasury API")
+            with st.expander("Error Details"):
+                st.code(error)
             st.info("Please check your internet connection and try refreshing.")
             st.stop()
     else:
@@ -152,6 +160,14 @@ st.success(f"✓ Loaded {len(df)} records from {df['date'].min():%Y-%m-%d} to {d
 
 # Create visualizer
 viz = CurrencyVisualizer(df, metrics)
+
+# Helper function for safe data access
+def get_currency_data(dataframe, currency):
+    """Safely get currency data, return None if not found."""
+    filtered = dataframe[dataframe['currency'] == currency]
+    if len(filtered) == 0:
+        return None
+    return filtered.iloc[0]
 
 # Main tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
@@ -177,10 +193,14 @@ with tab1:
     colors = ['#003399', '#C8102E', '#FF0000']
 
     for idx, currency in enumerate(currencies):
-        curr_summary = summary[summary['currency'] == currency].iloc[0]
-        curr_trends = trends[trends['currency'] == currency].iloc[0]
+        curr_summary = get_currency_data(summary, currency)
+        curr_trends = get_currency_data(trends, currency)
 
         with [col1, col2, col3][idx]:
+            if curr_summary is None or curr_trends is None:
+                st.error(f"{currency} data not available")
+                continue
+
             # Calculate change for display
             change_1q = curr_trends.get('change_1q', 0)
             change_1y = curr_trends.get('change_1y', 0)
@@ -301,9 +321,13 @@ with tab3:
     col1, col2, col3 = st.columns(3)
 
     for idx, currency in enumerate(['EUR', 'GBP', 'CAD']):
-        curr_vol = vol_metrics[vol_metrics['currency'] == currency].iloc[0]
+        curr_vol = get_currency_data(vol_metrics, currency)
 
         with [col1, col2, col3][idx]:
+            if curr_vol is None:
+                st.error(f"{currency} volatility data not available")
+                continue
+
             current_vol = curr_vol['current_volatility']
             avg_vol = curr_vol['average_volatility']
 
