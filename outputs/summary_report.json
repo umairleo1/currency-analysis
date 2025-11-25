@@ -1,0 +1,123 @@
+{
+  "data_summary": {
+    "total_records": 70,
+    "date_range": {
+      "start": "2020-03-31",
+      "end": "2025-09-30"
+    },
+    "currencies": [
+      "GBP",
+      "CAD",
+      "EUR"
+    ],
+    "records_per_currency": {
+      "GBP": 24,
+      "CAD": 23,
+      "EUR": 23
+    }
+  },
+  "summary_stats": [
+    {
+      "currency": "GBP",
+      "current_rate": 0.744,
+      "current_date": "2025-09-30 00:00:00",
+      "min_rate": 0.722,
+      "max_rate": 0.906,
+      "mean_rate": 0.782375,
+      "std_rate": 0.043333702618270416
+    },
+    {
+      "currency": "CAD",
+      "current_rate": 1.392,
+      "current_date": "2025-09-30 00:00:00",
+      "min_rate": 1.239,
+      "max_rate": 1.438,
+      "mean_rate": 1.3386086956521739,
+      "std_rate": 0.057464407268906885
+    },
+    {
+      "currency": "EUR",
+      "current_rate": 0.852,
+      "current_date": "2025-09-30 00:00:00",
+      "min_rate": 0.815,
+      "max_rate": 1.026,
+      "mean_rate": 0.9032608695652173,
+      "std_rate": 0.04825144123264785
+    }
+  ],
+  "trends": [
+    {
+      "currency": "GBP",
+      "change_1q": 1.917808219178084,
+      "direction_1q": "up",
+      "change_1y": -0.1342281879194632,
+      "direction_1y": "down",
+      "change_2y": -8.823529411764701,
+      "direction_2y": "down"
+    },
+    {
+      "currency": "CAD",
+      "change_1q": 1.8288222384784134,
+      "direction_1q": "up",
+      "change_1y": 2.9585798816567905,
+      "direction_1y": "up",
+      "change_2y": 3.6485480268056545,
+      "direction_2y": "up"
+    },
+    {
+      "currency": "EUR",
+      "change_1q": -0.11723329425556868,
+      "direction_1q": "down",
+      "change_1y": -4.591265397536398,
+      "direction_1y": "down",
+      "change_2y": -9.745762711864405,
+      "direction_2y": "down"
+    }
+  ],
+  "volatility": [
+    {
+      "currency": "GBP",
+      "current_volatility": 0.1106394904167713,
+      "average_volatility": 0.0915618857832049,
+      "volatility_percentile": 62.5
+    },
+    {
+      "currency": "CAD",
+      "current_volatility": 0.09214221246468036,
+      "average_volatility": 0.054743631381048014,
+      "volatility_percentile": 73.91304347826086
+    },
+    {
+      "currency": "EUR",
+      "current_volatility": 0.1305334793335476,
+      "average_volatility": 0.0884264877467949,
+      "volatility_percentile": 65.21739130434783
+    }
+  ],
+  "extremes": [
+    {
+      "currency": "GBP",
+      "highest_rate": 0.906,
+      "highest_date": "2022-09-30 00:00:00",
+      "lowest_rate": 0.722,
+      "lowest_date": "2021-06-30 00:00:00",
+      "range_pct": 25.484764542936293
+    },
+    {
+      "currency": "CAD",
+      "highest_rate": 1.438,
+      "highest_date": "2024-12-31 00:00:00",
+      "lowest_rate": 1.239,
+      "lowest_date": "2021-06-30 00:00:00",
+      "range_pct": 16.061339790153337
+    },
+    {
+      "currency": "EUR",
+      "highest_rate": 1.026,
+      "highest_date": "2022-09-30 00:00:00",
+      "lowest_rate": 0.815,
+      "lowest_date": "2020-12-31 00:00:00",
+      "range_pct": 25.88957055214725
+    }
+  ]
+}
