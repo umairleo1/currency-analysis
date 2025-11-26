@@ -7,3 +7,8 @@ pyyaml>=6.0
 
 # Dashboard
 streamlit>=1.28.0
+
+# Jupyter Notebook
+jupyter>=1.0.0
+nbformat>=4.2.0
+ipykernel>=6.0.0
