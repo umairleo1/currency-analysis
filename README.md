@@ -2,6 +2,8 @@
 
 A professional data analysis platform for USD exchange rates (EUR, GBP, CAD) using US Treasury data.
 
+**Live Application:** [https://umairleo1-currency-analysis-app-l0fbth.streamlit.app/](https://umairleo1-currency-analysis-app-l0fbth.streamlit.app/)
+
 **Author:** Muhammad Umair
 **Project:** Digital Platform Developer - KTP Associate Role
 **Organization:** Sapphire Capital Partners & Queen's University Belfast

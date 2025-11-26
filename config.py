@@ -7,8 +7,8 @@ ENDPOINT = "/v1/accounting/od/rates_of_exchange"
 # Currencies to analyze
 CURRENCIES = {
     'EUR': 'Euro Zone-Euro',
-    'GBP': 'United Kingdom Pound',
-    'CAD': 'Canada Dollar'
+    'GBP': 'United Kingdom-Pound',
+    'CAD': 'Canada-Dollar'
 }
 
 # Date range
