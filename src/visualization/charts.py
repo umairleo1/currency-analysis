@@ -214,7 +214,7 @@ class CurrencyVisualizer:
 
     def plot_distribution(self):
         """
-        Create distribution chart for daily returns.
+        Create distribution chart for quarterly returns.
 
         Returns:
             plotly.graph_objects.Figure: Distribution chart
@@ -234,8 +234,8 @@ class CurrencyVisualizer:
             ))
 
         fig.update_layout(
-            title='Distribution of Daily Returns (%)',
-            xaxis_title='Daily Return (%)',
+            title='Distribution of Quarterly Returns (%)',
+            xaxis_title='Quarterly Return (%)',
             yaxis_title='Frequency',
             template=self.theme,
             barmode='overlay',
