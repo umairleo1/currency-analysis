@@ -74,7 +74,6 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
-*.ipynb
 
 # IPython
 profile_default/
@@ -184,3 +183,7 @@ credentials.json
 # outputs/
 # *.html
 # *.json
+
+# Exploration notebook outputs
+exploration_results_*.csv
+summary_metrics_*.csv

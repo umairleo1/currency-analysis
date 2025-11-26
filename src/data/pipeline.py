@@ -56,7 +56,6 @@ class CurrencyDataPipeline:
         # Check cache
         cache_file = self.cache_dir / f"data_{start_date}.csv"
         if use_cache and cache_file.exists():
-            print(f"Loading cached data from {cache_file}")
             return pd.read_csv(cache_file, parse_dates=['date'])
 
         # Build currency filter
@@ -70,11 +69,6 @@ class CurrencyDataPipeline:
             'filter': f'country_currency_desc:in:({currency_filter}),record_date:gte:{start_date}',
             'page[size]': 10000
         }
-
-        print(f"Fetching data from US Treasury API...")
-        print(f"URL: {url}")
-        print(f"Currencies: {', '.join(currencies)}")
-        print(f"Start date: {start_date}")
 
         try:
             response = requests.get(url, params=params, timeout=30)
@@ -95,8 +89,6 @@ class CurrencyDataPipeline:
 
         # Cache it
         df.to_csv(cache_file, index=False)
-        print(f"Data cached to {cache_file}")
-        print(f"Total records fetched: {len(df)}")
 
         return df
 
@@ -129,10 +121,6 @@ class CurrencyDataPipeline:
         df['currency'] = df['currency_name'].map(currency_map)
 
         # Drop rows where currency mapping failed
-        unmapped_count = df['currency'].isna().sum()
-        if unmapped_count > 0:
-            unmapped_currencies = df[df['currency'].isna()]['currency_name'].unique()
-            print(f"Warning: {unmapped_count} records with unmapped currencies: {unmapped_currencies}")
         df = df.dropna(subset=['currency'])
 
         # Sort by date

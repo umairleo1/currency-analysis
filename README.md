@@ -135,6 +135,21 @@ The dashboard provides:
 - Risk and volatility assessment
 - Raw data exploration and export capabilities
 
+### Option 3: Explore Data with Jupyter Notebook
+
+Open the data exploration notebook for in-depth analysis:
+
+```bash
+jupyter notebook data_exploration.ipynb
+```
+
+The notebook includes:
+- Comprehensive data quality assessment
+- Statistical analysis and visualizations
+- Volatility and correlation analysis
+- Trend identification and insights
+- Export functionality for further analysis
+
 ---
 
 ## Project Structure
@@ -161,6 +176,7 @@ currency-analysis/
 │   └── summary_report.json       # Analysis summary
 ├── main.py                       # Main execution script
 ├── app.py                        # Streamlit dashboard application
+├── data_exploration.ipynb        # Jupyter notebook for data exploration
 ├── config.py                     # Configuration settings
 ├── requirements.txt              # Python dependencies
 ├── .env.example                  # Environment variable template

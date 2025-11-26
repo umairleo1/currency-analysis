@@ -21,7 +21,6 @@ from src.visualization.charts import CurrencyVisualizer
 # Page configuration
 st.set_page_config(
     page_title="Currency Intelligence Platform",
-    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -72,7 +71,7 @@ with st.sidebar:
     st.header("Dashboard Controls")
 
     # Refresh button
-    if st.button("🔄 Refresh Data", help="Clear cache and reload data from Treasury API", use_container_width=True):
+    if st.button("Refresh Data", help="Clear cache and reload data from Treasury API", use_container_width=True):
         st.cache_data.clear()
         st.success("Cache cleared! Data will refresh on next interaction.")
         st.rerun()
@@ -82,7 +81,7 @@ with st.sidebar:
     # Information section
     st.header("Information")
 
-    with st.expander("📊 About This Dashboard", expanded=False):
+    with st.expander("About This Dashboard", expanded=False):
         st.markdown("""
         This platform provides comprehensive analysis of currency exchange rates using official data from the US Treasury.
 
@@ -94,7 +93,7 @@ with st.sidebar:
         - Data export capabilities
         """)
 
-    with st.expander("📈 Data Source", expanded=False):
+    with st.expander("Data Source", expanded=False):
         st.markdown("""
         **Source:** US Department of Treasury
         **API:** Fiscal Data Service
@@ -103,7 +102,7 @@ with st.sidebar:
         **Period:** 2020-01-01 to Present
         """)
 
-    with st.expander("💱 Currencies Analyzed", expanded=False):
+    with st.expander("Currencies Analyzed", expanded=False):
         st.markdown("""
         - **EUR** - Euro (European Union)
         - **GBP** - British Pound (United Kingdom)
@@ -156,22 +155,7 @@ with st.spinner("Loading currency data from US Treasury API..."):
             st.stop()
 
 # Data loaded successfully
-st.success(f"✓ Loaded {len(df)} records from {df['date'].min():%Y-%m-%d} to {df['date'].max():%Y-%m-%d}")
-
-# Debug: Show what currencies were actually loaded
-with st.expander("Debug: Data Loading Info"):
-    st.write(f"**Total Records:** {len(df)}")
-    st.write(f"**Date Range:** {df['date'].min():%Y-%m-%d} to {df['date'].max():%Y-%m-%d}")
-    st.write(f"**Currencies in Data:**")
-    for curr in df['currency'].unique():
-        count = len(df[df['currency'] == curr])
-        st.write(f"  - {curr}: {count} records")
-    if df['currency'].isna().any():
-        st.warning(f"⚠️ Found {df['currency'].isna().sum()} records with missing currency codes")
-        st.write("**Currency names that failed to map:**")
-        unmapped = df[df['currency'].isna()]['currency_name'].unique()
-        for name in unmapped:
-            st.write(f"  - '{name}'")
+st.success(f"Loaded {len(df)} records from {df['date'].min():%Y-%m-%d} to {df['date'].max():%Y-%m-%d}")
 
 # Create visualizer
 viz = CurrencyVisualizer(df, metrics)
@@ -186,11 +170,11 @@ def get_currency_data(dataframe, currency):
 
 # Main tabs
 tab1, tab2, tab3, tab4, tab5 = st.tabs([
-    "📊 Overview",
-    "📈 Detailed Analysis",
-    "⚠️ Risk & Volatility",
-    "🎯 Performance Dashboard",
-    "📋 Data Explorer"
+    "Overview",
+    "Detailed Analysis",
+    "Risk & Volatility",
+    "Performance Dashboard",
+    "Data Explorer"
 ])
 
 # TAB 1: Overview
@@ -498,7 +482,7 @@ with tab5:
             # CSV download
             csv = filtered_df.to_csv(index=False)
             st.download_button(
-                label="📥 Download CSV",
+                label="Download CSV",
                 data=csv,
                 file_name=f"currency_data_{datetime.now().strftime('%Y%m%d')}.csv",
                 mime="text/csv",
@@ -509,7 +493,7 @@ with tab5:
             # JSON download
             json_data = filtered_df.to_json(orient='records', indent=2)
             st.download_button(
-                label="📥 Download JSON",
+                label="Download JSON",
                 data=json_data,
                 file_name=f"currency_data_{datetime.now().strftime('%Y%m%d')}.json",
                 mime="application/json",
@@ -529,7 +513,7 @@ Data Source: US Department of Treasury
 API: Fiscal Data Service
 """
             st.download_button(
-                label="📥 Download Summary",
+                label="Download Summary",
                 data=summary_text,
                 file_name=f"summary_{datetime.now().strftime('%Y%m%d')}.txt",
                 mime="text/plain",
