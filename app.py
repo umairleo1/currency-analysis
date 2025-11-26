@@ -158,6 +158,21 @@ with st.spinner("Loading currency data from US Treasury API..."):
 # Data loaded successfully
 st.success(f"✓ Loaded {len(df)} records from {df['date'].min():%Y-%m-%d} to {df['date'].max():%Y-%m-%d}")
 
+# Debug: Show what currencies were actually loaded
+with st.expander("Debug: Data Loading Info"):
+    st.write(f"**Total Records:** {len(df)}")
+    st.write(f"**Date Range:** {df['date'].min():%Y-%m-%d} to {df['date'].max():%Y-%m-%d}")
+    st.write(f"**Currencies in Data:**")
+    for curr in df['currency'].unique():
+        count = len(df[df['currency'] == curr])
+        st.write(f"  - {curr}: {count} records")
+    if df['currency'].isna().any():
+        st.warning(f"⚠️ Found {df['currency'].isna().sum()} records with missing currency codes")
+        st.write("**Currency names that failed to map:**")
+        unmapped = df[df['currency'].isna()]['currency_name'].unique()
+        for name in unmapped:
+            st.write(f"  - '{name}'")
+
 # Create visualizer
 viz = CurrencyVisualizer(df, metrics)
 

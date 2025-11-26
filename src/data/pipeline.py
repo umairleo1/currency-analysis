@@ -128,6 +128,13 @@ class CurrencyDataPipeline:
         currency_map = {v: k for k, v in CURRENCIES.items()}
         df['currency'] = df['currency_name'].map(currency_map)
 
+        # Drop rows where currency mapping failed
+        unmapped_count = df['currency'].isna().sum()
+        if unmapped_count > 0:
+            unmapped_currencies = df[df['currency'].isna()]['currency_name'].unique()
+            print(f"Warning: {unmapped_count} records with unmapped currencies: {unmapped_currencies}")
+        df = df.dropna(subset=['currency'])
+
         # Sort by date
         df = df.sort_values('date').reset_index(drop=True)
 
